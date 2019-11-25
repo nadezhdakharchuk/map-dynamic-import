@@ -12,8 +12,8 @@ const MapBox = styled.div`
   position: absolute;
   top: 0;
   right: 0;
-  left: 0;
   bottom: 0;
+  left: 0;
   height: 100%;
 `;
 
@@ -214,22 +214,16 @@ const MapboxGl = props => {
       addPolygonsToMap(map, markers);
     });
     map.on('webglcontextlost', () => {
-      console.log('context lost');
       map.remove();
       onMapError();
     });
     map.on('error', () => {
-      console.log('error');
       map.remove();
       onMapError();
     });
-  }, []);
+  }, [fetchedLocations]);
 
-  return (
-    <>
-      <MapBox id="mapContainer" data-testid="test-mapboxgl" />
-    </>
-  );
+  return <MapBox id="mapContainer" data-testid="test-mapboxgl" />;
 };
 
 export default MapboxGl;

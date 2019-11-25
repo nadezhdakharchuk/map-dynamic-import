@@ -1,20 +1,12 @@
-import React, { useState } from 'react';
-import isSupported from '@mapbox/mapbox-gl-supported';
-import Mapbox from './Mapbox';
-import MapboxGl from './MapboxGl';
+import React from 'react';
+import dynamic from 'next/dynamic';
+
+const MapDynamicComponentWithNoSSR = dynamic(() => import('./MapView'), {
+  ssr: false,
+});
 
 const Map = props => {
-  const [isError, setError] = useState(false);
-
-  const onMapError = () => {
-    setError(true);
-  };
-
-  if (isSupported && !isError) {
-    return <MapboxGl {...props} onMapError={onMapError} />;
-  }
-
-  return <Mapbox {...props} />;
+  return <MapDynamicComponentWithNoSSR {...props} />;
 };
 
 export default Map;

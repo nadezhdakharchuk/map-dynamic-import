@@ -60,6 +60,7 @@ export default class StaticPageService {
                     large {
                       url
                     }
+                    url
                     description
                     image_width
                     image_height
